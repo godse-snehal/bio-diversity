@@ -1,0 +1,21 @@
+body {
+    margin-left: 60px;
+    margin-right: 60px;
+    font-family: 'Verdana, Geneva, sans-serif';
+}
+
+.jumbotron {
+    background-color: aquamarine;
+}
+
+.card-header {
+    background-color: aquamarine;
+}
+
+.card-text {
+    font-size: 17px;
+}
+
+#pie {
+    margin-top: -30px;
+}
