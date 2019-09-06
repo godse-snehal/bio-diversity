@@ -2,17 +2,14 @@ function buildMetadata(sample) {
 
   // Select the id to populate sample metadata
   var sampleData = d3.select("#sampleData");
-  
   // Clear any existing metadata
   sampleData.html("");
-
   // Fetch the metadata for a sample
   var url = "/metadata/" + sample;
   d3.json(url).then(function(d) {
     for (let [key, value] of Object.entries(d)) {
       sampleData.append("p").attr("class", "card-text").text(key + ": " + value);
     }
-    
     
     // Build the Gauge Chart
     // Enter a speed between 0 and 180
@@ -33,41 +30,36 @@ function buildMetadata(sample) {
 	  pathEnd = ' Z';
     var path = mainPath.concat(pathX,space,pathY,pathEnd);
 
-    var data = [ {
-                    type: 'scatter',
-                    x: [0], y:[0],
-                    marker: {size: 18, color:'850000'}
-                  },
-                  {
-                    domain: {x: [0, 1], y: [0, 1]}, 
-                    title: {text: "Belly Button Washing Frequency"},
-                    type: "indicator", 
-                    mode: "gauge",
-                    gauge: {
-                              axis: {range: [0, 9]},
-                              labels: ["0-1", "1-2", "2-3", "3-4", "4-5", "5-6", "6-7", "7-8", "8-9"],
-                              textinfo: 'label',
-                              textposition:'inside',
-                              steps: [{range: [0, 1], color: d3.interpolateYlGn(0)},
-                                      {range: [1, 2], color: d3.interpolateYlGn(0.1)},
-                                      {range: [2, 3], color: d3.interpolateYlGn(0.2)},
-                                      {range: [3, 4], color: d3.interpolateYlGn(0.3)},
-                                      {range: [4, 5], color: d3.interpolateYlGn(0.4)},
-                                      {range: [5, 6], color: d3.interpolateYlGn(0.5)},
-                                      {range: [6, 7], color: d3.interpolateYlGn(0.6)},
-                                      {range: [7, 8], color: d3.interpolateYlGn(0.7)},
-                                      {range: [8, 9], color: d3.interpolateYlGn(0.8)}
-                                      ]
-                            }
-                    }
-                ];
+    var data = [{ type: 'scatter',
+                x: [0], y:[0],
+               marker: {size: 18, color:'850000'},
+               showlegend: false},
+               { 
+                values: [50/9,50/9,50/9,50/9,50/9,50/9,50/9,50/9,50/9,50],
+                rotation: 90,
+                direction: 'clockwise',
+                text: ["0-1", "1-2", "2-3", "3-4", "4-5", "5-6", "6-7", "7-8", "8-9", ""],
+                textinfo: 'text',
+                textposition:'inside',	  
+                marker: {colors:['rgb(255,255,204)', 'rgb(229,255,204)',
+                          'rgb(204,255,204)', 'rgb(153,255,153)',
+                          'rgb(102,255,178)', 'rgb(0,255,0)',
+                          'rgb(0,204,0)', 'rgb(0,153,0)',
+                           'rgb(0,102,0)', 'rgb(255,255,255)']},
+               hole: .5,
+               type: 'pie',
+               showlegend: false
+             }];
 
     var layout = {
                   shapes:[{type: 'path',
                            path: path,
                            fillcolor: '850000',
-                           line: {
-                                  color: '850000'}}],
+                           line: {color: '850000'},
+                           
+                          }],
+                  title: {text: "<b>Belly Button Washing Frequency</b><br>Scrubs per week"},
+                  
                   height: 450,
                   width: 450, 
                   xaxis: {zeroline:false, showticklabels:false,
