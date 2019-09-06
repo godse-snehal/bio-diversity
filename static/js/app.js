@@ -43,7 +43,7 @@ function buildMetadata(sample) {
                 textposition:'inside',	  
                 marker: {colors:['rgb(255,255,204)', 'rgb(229,255,204)',
                           'rgb(204,255,204)', 'rgb(153,255,153)',
-                          'rgb(102,255,178)', 'rgb(0,255,0)',
+                          'rgb(0,255,0)', 'rgb(102,255,178)', 
                           'rgb(0,204,0)', 'rgb(0,153,0)',
                            'rgb(0,102,0)', 'rgb(255,255,255)']},
                hole: .5,
